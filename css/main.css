@@ -180,6 +180,7 @@ display: inline-block}
 
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 5px;
     margin: 0 auto 0 0;
     display: inline-block;
 
@@ -191,12 +192,10 @@ display: inline-block}
 {
  display: inline-block;
  
- margin: 0 auto 0 0;
+ margin: 0 5px 0 0;
 
   max-width: 300px;
 
-padding-left: 10px;
-padding-right: 1px;
 padding-top: 5px;
 
  vertical-align: top;
