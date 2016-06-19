@@ -24,9 +24,9 @@ void draw() {
   line(400, 150, 600, 350);                             // 45º pendiente
   line(600, 350, 800, 350);                             // 0º pendiente
 
-  if (location.x > 0 && location.x < 200){            // Velocidad reducida a un cuarto
+  if (location.x > 0 && location.x < 200){            
       acceleration = 0;
-      velocity1.x += acceleration*dt;                          //La fórmula: v = v+a*t
+      velocity1.x += acceleration*dt;                          
       velocity1.y += acceleration*dt;
       location.x += velocity1.x*dt;
       location.y += velocity1.y*dt;
@@ -44,7 +44,7 @@ void draw() {
       fill(0);
       text("Velocidad en X: "+velocity2.x,400,425);
       text("Velocidad en Y: "+velocity2.y,400,450);   
-    } else if (location.x > 400 && location.x < 600){   // Velocidad reducida a un tercio de la inicial
+    } else if (location.x > 400 && location.x < 600){   // Velocidad reducida a la mitad de la inicial
       acceleration = 5;
       velocity3.x += acceleration*dt;
       velocity3.y += acceleration*dt;
@@ -63,8 +63,6 @@ void draw() {
       fill(0);
       text("Velocidad en X: "+velocity1.x,400,425);
       text("Velocidad en Y: "+velocity1.y,400,450);
-    } else{
-     location.x = 8;
     }
   
   text("Pendiente: " + pendiente,400,400);
@@ -76,8 +74,8 @@ void draw() {
   ellipse(location.x, location.y, 16, 16);
   
   //Si la bola se sale de la ventana, vuelve a la posicion inicial
-  if (location.x > 600) {
-    location.x = 0;
-    location.y = 250;
+  if (location.x > 800) {
+    location.x = 8;
+    location.y = 350;
   } 
 }
