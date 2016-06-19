@@ -1,4 +1,4 @@
-/* @pjs preload="recursos/bandera.jpg"; */
+/* @pjs preload="../img/bandera.jpg"; */
 
 Malla malla;
 float dt = 0.5;
@@ -63,7 +63,7 @@ class Malla {
     masa = 0.5;
     
     //Cargamos la textura
-    img = loadImage("img/bandera.jpg");
+    img = loadImage("../img/bandera.jpg");
   }
   
   //Copiado del pdf (ver tema4)
