@@ -23,7 +23,7 @@ body {
 
 h1,h2,h3,h4,h5,h6,p {
     margin:0 0 1em;
-    padding:0
+    padding:0;
 }
 
 a {
@@ -174,8 +174,7 @@ display: inline-block}
 {
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     display: block;
 }
 
