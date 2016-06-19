@@ -1,13 +1,19 @@
+﻿// Práctica 1 de Simulación
+// Miguel Lozano
+// Curso 13-14
 
 final int EULER = 0;
 final int EULER_SEMI = 1;
 
 
 int modo = 0; //modo actual
+
+
 // Extremos 
 Extremo[] vExtr = new Extremo[1]; //El vector antes tenia longitud 2, pero solo se usa un extremo
 Extremo[] vFijos = new Extremo[2];
 Muelle[] vMuelles = new Muelle[2];
+
 
 //Archivo para almacenar los datos de la curva a representar
 //PrintWriter output;
@@ -126,7 +132,7 @@ class Muelle {
 
     b.applyForce(fuerza);
 
-    PVector fuerza2 = new PVector(0,0);
+    PVector fuerza2 = new PVector();
     fuerza2.x = k * (len - len_reposo) * dir.x;
     fuerza2.y = k * (len - len_reposo) * dir.y;
 
@@ -168,9 +174,9 @@ class Extremo {
   // Constructor
   Extremo(float x, float y) {
     location = new PVector(x, y);
-    velocity = new PVector(0,0);
-    acceleration = new PVector(0,0);
-    force = new PVector(0,0);
+    velocity = new PVector();
+    acceleration = new PVector();
+    force = new PVector();
     gravity = new PVector(0, 9.8);
 
 
