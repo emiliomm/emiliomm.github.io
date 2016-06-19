@@ -155,12 +155,8 @@ display: inline-block}
 
 /* Cuerpo */
 .cuerpo {
-    /*margin:1.5em;*/
+    margin:1.5em;
     line-height:1.6em
-
-    min-width:960px;
-    margin-left:auto;
-    margin-right:auto;
 }
 
 .elemento{
@@ -182,10 +178,10 @@ display: inline-block}
     border-width: 1px;
     border-color: black;
 
-  /*  padding-left: 0;
+    padding-left: 0;
     padding-right: 0;
     margin: 0 auto 0 0;
-    display: inline-block;*/
+    display: inline-block;
 
     float:left;
     margin-left:10px;
@@ -193,19 +189,15 @@ display: inline-block}
 
 .instrucciones
 {
- /*display: inline-block;
+ display: inline-block;
  
- margin: 0 auto auto 0;
+ margin: 0 auto 0 0;
 
-  max-width: 340px;
+  max-width: 300px;
 
 padding-left: 10px;
 padding-right: 1px;
-padding-top: 5px;*/
-
-min-width:700px;
-    margin-left:10px;
-    overflow:hidden;
+padding-top: 5px;
 
  vertical-align: top;
 }
