@@ -1,4 +1,4 @@
-/* @pjs preload="../img/bandera.jpg"; */
+/* @pjs preload="recursos/bandera.jpg"; */
 
 Malla malla;
 float dt = 0.5;
