@@ -61,7 +61,7 @@ class Malla {
     masa = 0.5;
     
     //Cargamos la textura
-    img = loadImage("bandera.jpg");
+    img = loadImage("img/bandera.jpg");
   }
   
   //Copiado del pdf (ver tema4)
