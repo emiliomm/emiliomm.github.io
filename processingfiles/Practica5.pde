@@ -1,3 +1,5 @@
+/* @pjs preload="../img/Water_surface_lake.jpg"; */
+
 //Emilio Montejano Mora
 
 /*
@@ -87,7 +89,7 @@ class Malla {
     }
     
     //Cargamos la textura
-    img = loadImage("Water_surface_lake.jpg");
+    img = loadImage("../img/Water_surface_lake.jpg");
   }
   
   void nuevaOla(Ola o)
