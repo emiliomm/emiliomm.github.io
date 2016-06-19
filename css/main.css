@@ -189,10 +189,8 @@ display: inline-block}
  display: inline-block;
  
  margin: 0 auto auto 0;
-  min-height: 350px;
 
-  min-width: 340px;
- overflow:hidden;
+  max-width: 340px;
 
 padding-left: 10px;
 padding-right: 1px;
