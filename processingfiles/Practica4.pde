@@ -1,3 +1,5 @@
+/* @pjs preload="img/bandera.jpg"; */
+
 Malla malla;
 float dt = 0.5;
 
