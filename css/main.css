@@ -168,7 +168,8 @@ display: inline-block}
 .titulo{
     margin:0 0 1.5em;
     font-size:1.4em;
-    line-height:1.6em
+    line-height:1.6em;
+    max-width: 250px;
 }
 
 /* Simulacion */
