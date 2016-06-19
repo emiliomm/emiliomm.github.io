@@ -188,11 +188,15 @@ display: inline-block}
  max-width: 325px;
  min-height: 350px;
 
-padding-left: 5px;
+padding-left: 10px;
 padding-right: 5px;
 padding-top: 5px;
 
  vertical-align: top;
+
+ border-style: solid;
+    border-width: 1px;
+    border-color: black;
 }
 
 /* Footer */
