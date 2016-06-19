@@ -197,7 +197,7 @@ void draw()
   text("Pulsa la tecla 2 para la simulación se realice con particulas normales y colisiones con estructura de Tabla Hash", 200, 580);
 }
 
-public class TablaHash {
+class TablaHash {
   private int size;
 
   private int tamCeldaX;
