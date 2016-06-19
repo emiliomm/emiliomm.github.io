@@ -2,6 +2,9 @@
 // Miguel Lozano
 // Curso 13-14
 
+
+float dt = 0.8;
+
 final int EULER = 0;
 final int EULER_SEMI = 1;
 
@@ -36,8 +39,8 @@ void setup() {
   
   //Creación de los muelles
   
-  vMuelles[0] = new Muelle(vFijos[0], vExtr[0]);
-  vMuelles[1] = new Muelle(vFijos[1], vExtr[0]);
+  vMuelles[0] = new Muelle(vFijos[0], vExtr[0],0);
+  vMuelles[1] = new Muelle(vFijos[1], vExtr[0],0);
   
   //Creacion del fichero
   //output = createWriter("Positions.txt");
@@ -95,56 +98,39 @@ void keyPressed() {
 }
 
 class Muelle {
-  
-  
-  float len_reposo;
-  float len;
-  PVector dir;
-  float k = 15.0;
-  PVector fuerza;
-  
-  //Extremos del muelle
+  PVector longActual = new PVector();
+  float longReposo;
+  float k = 0.4;
+
   Extremo a;
   Extremo b;
-  
-  
-  // Constructor
-  Muelle(Extremo a_, Extremo b_) {
-    a = a_;
-    b = b_;
-    len_reposo = sqrt((b.location.x - a.location.x)*(b.location.x - a.location.x) + (b.location.y - a.location.y)*(b.location.y - a.location.y));
-    len = len_reposo;
-    dir = new PVector();
-    fuerza = new PVector();
+
+  Muelle(Extremo A, Extremo B, int lReposo) {
+    a = A;
+    b = B;
+
+    //lReposo
+    longReposo = sqrt((b.location.x - a.location.x)*(b.location.x - a.location.x) + (b.location.y - a.location.y)*(b.location.y - a.location.y));
   }
-  
-  // Calculate spring force
+
   void update() {
-    //aplicar la fuerza del muelle de acuerdo con la ley de Hook.
+    longActual = PVector.sub(b.location, a.location);
+    float modLongActual = longActual.mag();
+    longActual.normalize();
     
-    len = sqrt((b.location.x - a.location.x)*(b.location.x - a.location.x) + (b.location.y -a.location.y)*(b.location.y - a.location.y));
+    PVector fMuelle1 = new PVector(0, 0);
+    PVector fk1 = PVector.mult(longActual, k * (modLongActual - longReposo));
+    PVector fk1_amort = PVector.mult(a.velocity, a.damping);
+    fMuelle1 = PVector.sub(fk1, fk1_amort); //FUERZA k amortiguada = ks*(l_actual − l_reposo) − kd * vmuelle
+    a.applyForce(fMuelle1);
     
-    dir = new PVector(b.location.x - a.location.x, b.location.y - a.location.y);
-    dir.normalize();
-    
-    fuerza.x = -k * (len - len_reposo) * dir.x;
-    fuerza.y = -k * (len - len_reposo) * dir.y;
-    
-    b.applyForce(fuerza);
-    
-    PVector fuerza2 = new PVector();
-    fuerza2.x = k * (len - len_reposo) * dir.x;
-    fuerza2.y = k * (len - len_reposo) * dir.y;
-    
-    a.applyForce(fuerza2);
-    
-    
-    
-    //fuerza.normalice()  normaliza el vector
-    //fuerza.mult(h) multiplica el vector por el escalar h
+    PVector fMuelle2 = new PVector(0, 0);
+    PVector fk2 = PVector.mult(longActual, (-k) * (modLongActual - longReposo));
+    PVector fk2_amort = PVector.mult(b.velocity, b.damping);
+    fMuelle2 = PVector.sub(fk2, fk2_amort); //FUERZA k amortiguada = ks*(l_actual − l_reposo) − kd * vmuelle
+    b.applyForce(fMuelle2);
   }
-  
-  //dibuja una linea recta que representa al muelle
+
   void display() {
     strokeWeight(2);
     stroke(0);
@@ -156,41 +142,33 @@ class Extremo {
   PVector location;
   PVector velocity;
   PVector acceleration;
-  float mass = 10.0, dt = .4;
-  PVector gravity;
-  PVector force;
   
-  
-  
-  
-  // Arbitrary damping to simulate friction / drag
-  float damping = 0.5;
-  
-  // For mouse interaction
+  float masa = 10;
+
+  PVector grav;
+
   PVector dragOffset;
-  PVector amortiguamiento;
   boolean dragging = false;
-  
-  // Contructor
+  float damping; //amort
+
+  // Constructor
   Extremo(float x, float y) {
     location = new PVector(x, y);
-    velocity = new PVector ();
+    velocity = new PVector();
     acceleration = new PVector();
-    force = new PVector();
-    gravity = new PVector(0, 9.8);
     
+    grav = new PVector(0, 9.8);
     
     dragOffset = new PVector();
+    
+    //Tiene amortiguación
+    damping = 0.4;
   }
-  
-  
-  
-  // Standard Euler integration
+
+  //Utilizamos Euler-semi
   void update(int mode) {
-    
-    
-    applyForce(gravity);
-    
+    applyForce(grav); //aplicamos la gravedad
+
     switch(mode){
     case EULER:
       location.add(velocity.mult(dt));
@@ -203,44 +181,40 @@ class Extremo {
     }
     acceleration = new PVector(0, 0);
   }
-  
-  // Newton's law: F = M * A
+
+
   void applyForce(PVector force) {
-    
-    
-    
-    acceleration.add(new PVector(force.x/mass, force.y/mass));
+    PVector f = force.get();
+    f.div(masa);
+    acceleration.add(f);
   }
-  
-  
-  // Dibujo el extremo como un circulo de radio proporcional a su peso
+
   void display() {
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(1);
     fill(255, 0, 0);
+
     if (dragging) {
       fill(50);
     }
-    ellipse(location.x, location.y, mass*2, mass*2);
     
+    ellipse(location.x, location.y, masa * 2, masa * 2);
   }
-  
-  // The methods below are for mouse interaction
-  
-  // This checks to see if we clicked on the mover
+
   void clicked(int mx, int my) {
     float d = dist(mx, my, location.x, location.y);
-    if (d < mass) {
+    
+    if (d < masa) {
       dragging = true;
       dragOffset.x = location.x-mx;
       dragOffset.y = location.y-my;
     }
   }
-  
+
   void stopDragging() {
     dragging = false;
   }
-  
+
   void drag(int mx, int my) {
     if (dragging) {
       location.x = mx + dragOffset.x;
@@ -248,6 +222,3 @@ class Extremo {
     }
   }
 }
-
-     
-  
