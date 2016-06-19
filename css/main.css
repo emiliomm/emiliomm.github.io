@@ -170,6 +170,8 @@ display: inline-block}
     line-height:1.6em
 }
 
+/* Simulacion */
+
 .processingCanvas
 {
     border-style: solid;
@@ -193,6 +195,11 @@ padding-right: 1px;
 padding-top: 5px;
 
  vertical-align: top;
+}
+
+.atras
+{
+
 }
 
 /* Footer */
