@@ -190,7 +190,7 @@ display: inline-block}
  
  min-height: 350px;
 
-min-width: 300px;
+max-width: 300px;
 
 padding-left: 10px;
 padding-right: 1px;
