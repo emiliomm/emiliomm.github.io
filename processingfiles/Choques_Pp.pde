@@ -47,8 +47,8 @@ void setup()
   particulas =  new ArrayList<Particle>(); 
 
   //Rellena el array partículas
-  num_bolas = 18; //bolas por fila
-  num_filas = 25;
+  num_bolas = 10; //bolas por fila
+  num_filas = 10;
   for (int i = 0; i < num_filas; i++)
   {
     for (int j = 0; j < num_bolas; j++)
