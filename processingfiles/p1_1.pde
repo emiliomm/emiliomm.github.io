@@ -1,46 +1,32 @@
-// Práctica 1 de Simulación
-// Miguel Lozano
-// Curso 13-14
-
 final int EULER = 0;
 final int EULER_SEMI = 1;
 
 
-int modo = 0; //modo actual
+int modo = 0; 
 
 
-// Extremos 
-Extremo[] vExtr = new Extremo[1]; //El vector antes tenia longitud 2, pero solo se usa un extremo
+Extremo[] vExtr = new Extremo[1];
 Extremo[] vFijos = new Extremo[2];
 Muelle[] vMuelles = new Muelle[2];
 
 
-//Archivo para almacenar los datos de la curva a representar
-//PrintWriter output;
 
 
 void setup() {
   size(640, 360);
-  // Create objects at starting location
-
-  //Creación de los puntos fijos A y B
 
   vFijos[0] = new Extremo(width*0.5, (1.0/8.0)*height);
   vFijos[1] = new Extremo(width*0.5, (7.0/8.0)*height);
 
 
-  // Creación del extremo común de los muelles
 
   vExtr[0] = new Extremo(0.5*width, 0.5*height);
 
 
-  //Creación de los muelles
 
   vMuelles[0] = new Muelle(vFijos[0], vExtr[0]);
   vMuelles[1] = new Muelle(vFijos[1], vExtr[0]);
 
-  //Creacion del fichero
-  //output = createWriter("Positions.txt");
 }
 
 void draw() {
@@ -48,9 +34,6 @@ void draw() {
   for (int i = 0; i < vMuelles.length; i++) {
     vMuelles[i].update();
     vMuelles[i].display();
-    //Escribimos el fichero
-    //if (i==0)
-    //  output.println(vMuelles[0].len-vMuelles[0].len_reposo);
   }
 
   if (keyPressed) {
@@ -87,15 +70,9 @@ void mouseReleased() {
     b.stopDragging();
   }
 }
-void keyPressed() {
-  //if(key == 'f' || key == 'F'){
-  //  output.flush();
-  //  output.close();
-  //}
-}
+
 
 class Muelle { 
-
 
   float len_reposo;
   float len;
@@ -103,12 +80,9 @@ class Muelle {
   float k = 15.0;
   PVector fuerza;
 
-  //Extremos del muelle
   Extremo a;
   Extremo b;
 
-
-  // Constructor
   Muelle(Extremo a_, Extremo b_) {
     a = a_;
     b = b_;
@@ -118,9 +92,8 @@ class Muelle {
     fuerza = new PVector();
   } 
 
-  // Calculate spring force
+
   void update() {
-    //aplicar la fuerza del muelle de acuerdo con laley de Hook.
 
     len = sqrt((b.location.x - a.location.x)*(b.location.x - a.location.x) + (b.location.y - a.location.y)*(b.location.y - a.location.y));
 
@@ -132,19 +105,13 @@ class Muelle {
 
     b.applyForce(fuerza);
 
-    PVector fuerza2 = new PVector();
+    PVector fuerza2 = new PVector(0,0);
     fuerza2.x = k * (len - len_reposo) * dir.x;
     fuerza2.y = k * (len - len_reposo) * dir.y;
 
     a.applyForce(fuerza2);
-
-
-
-    //fuerza.normalize()  normaliza el vector
-    //fuerza.mult(h)  multiplica elvector por el escalar h
   }
 
-  //dibuja una linea recta que representa al muelle
   void display() {
     strokeWeight(2);
     stroke(0);
@@ -156,17 +123,15 @@ class Extremo {
   PVector location;
   PVector velocity;
   PVector acceleration;
-  float mass = 10.0, dt = .4;
+  float mass = 10.0, dt = 0.4;
   PVector gravity;
   PVector force;
 
 
 
 
-  // Arbitrary damping to simulate friction / drag 
   float damping = 0.5;
 
-  // For mouse interaction
   PVector dragOffset;
   PVector amortiguamiento;
   boolean dragging = false;
@@ -174,9 +139,9 @@ class Extremo {
   // Constructor
   Extremo(float x, float y) {
     location = new PVector(x, y);
-    velocity = new PVector();
-    acceleration = new PVector();
-    force = new PVector();
+    velocity = new PVector(0,0);
+    acceleration = new PVector(0,0);
+    force = new PVector(0,0);
     gravity = new PVector(0, 9.8);
 
 
@@ -213,7 +178,6 @@ class Extremo {
   }
 
 
-  // Dibujo el extremo como un circulo de radio proporcional a su peso
   void display() { 
     stroke(0);
     strokeWeight(2);
@@ -223,11 +187,8 @@ class Extremo {
     }
     ellipse(location.x, location.y, mass*2, mass*2);
 
-  } 
+  }
 
-  // The methods below are for mouse interaction
-
-  // This checks to see if we clicked on the mover
   void clicked(int mx, int my) {
     float d = dist(mx, my, location.x, location.y);
     if (d < mass) {
