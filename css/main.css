@@ -185,6 +185,8 @@ display: inline-block}
 .instrucciones
 {
  display: inline-block;
+ max-width: 300px;
+ min-height: 500px;
 }
 
 /* Footer */
