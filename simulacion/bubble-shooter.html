@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<!-- Script del programa processing, necesario para que funcione la demo -->
+<script type="text/javascript" src="../js/processing.min.js"></script> 
      <!-- jQuery from CDN -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="js/jribbble.js"></script>
-      <script src="js/bootstrap.js"></script>
+
+
+
+      <script src="../js/jribbble.js"></script>
+      <script src="../js/bootstrap.js"></script>
 </script>
       
     <meta charset="utf-8">
@@ -15,9 +20,9 @@
     
     <!-- Bootstrap + Font Awesome + Main CSS -->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
     <!-- customize this file if needed -->
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +60,7 @@
 
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
-                        <h1 class="intro"><span>Hola</span> <span>soy</span> Emilio Montejano. <span> Programador </span></h1>
+                        <h1 class="intro"><span>Bubble</span> <span>shooter</span></h1>
                     </div>
                 </div>
             </header>
@@ -68,15 +73,7 @@
                     <div class="col-md-12 col-lg-12">
                     	<div class="cuerpo">
                         	
-                        	<div class="elemento">
-	                        	<h1 class="titulo">Bubble shooter</span></h1>
-	                        	<img src="img/snip_20160619141934.png" alt="Smiley face" height="250" width="250">
-                        	</div>
-
-                        	<div class="elemento">
-	                        	<h1 class="titulo">Bubble shooter</span></h1>
-	                        	<img src="img/snip_20160619141934.png" alt="Smiley face" height="250" width="250">
-                        	</div>
+                        	<canvas data-processing-sources="../processingfiles/bubble_shooter.pde"></canvas>
 
 						</div>
                     </div>
