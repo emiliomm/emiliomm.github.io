@@ -13,7 +13,7 @@ float x2 = 0;
 float y2 = 0;
 
 void setup() {
-  size(700, 600);
+  size(650, 500);
   posX1[0]=0;
   posX2[0]=0;
   for (int i=0; i<700-1; i++)
