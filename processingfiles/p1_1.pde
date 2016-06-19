@@ -110,7 +110,7 @@ class Muelle {
     b = B;
 
     //lReposo
-    longReposo = sqrt((b.location.x - a.location.x)*(b.location.x - a.location.x) + (b.location.y - a.location.y)*(b.location.y - a.location.y));
+    longReposo = 5;
   }
 
   void update() {
