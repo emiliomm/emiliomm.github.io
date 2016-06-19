@@ -189,8 +189,10 @@ display: inline-block}
  display: inline-block;
  
  margin: 0 auto auto 0;
-max-width: 300px;
   min-height: 350px;
+
+  width: 400px;
+    max-width: 45%;
  
 
 padding-left: 10px;
