@@ -187,8 +187,10 @@ display: inline-block}
 .instrucciones
 {
  display: inline-block;
- max-width: 330px;
- min-width: 350px;
+ 
+ min-height: 350px;
+
+min-width: 350px;
     max-width: 90%;
 
 padding-left: 10px;
