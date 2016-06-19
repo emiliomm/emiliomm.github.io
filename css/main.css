@@ -186,7 +186,9 @@ display: inline-block}
 {
  display: inline-block;
  max-width: 300px;
- min-height: 500px;
+ min-height: 300px;
+
+ vertical-align: top;
 }
 
 /* Footer */
